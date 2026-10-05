@@ -15,6 +15,7 @@ type
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     Jugador: TPlayer;
   public
@@ -34,9 +35,28 @@ begin
 Jugador := TPlayer.Create;
 end;
 
+procedure TForm1.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+if key = VK_RIGHT then
+Jugador.MoverDerecha;
+
+if key = VK_Left then
+Jugador.MoverIzquierda;
+
+if key = VK_UP then
+Jugador.MoverArriba;
+
+if key = VK_DOWN then
+Jugador.MoverAbajo
+
+end;
+
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-ShowMessage('¡Hola! Este es mi primer programa en Delphi.');
+Jugador.MoverDerecha;
+ShowMessage('Posicion X: ' + IntToStr(Jugador.GetPosicionX));
+
 end;
 
 

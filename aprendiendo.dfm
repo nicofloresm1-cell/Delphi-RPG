@@ -10,6 +10,7 @@ object Form1: TForm1
   Font.Name = 'Segoe UI'
   Font.Style = []
   OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   TextHeight = 15
   object Button1: TButton
     Left = 200
