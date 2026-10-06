@@ -16,6 +16,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormPaint(Sender: TObject);
   private
     Jugador: TPlayer;
   public
@@ -24,6 +25,7 @@ type
 
 var
   Form1: TForm1;
+
 
 implementation
 
@@ -35,22 +37,23 @@ begin
 Jugador := TPlayer.Create;
 end;
 
-procedure TForm1.FormKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+procedure TForm1.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
-if key = VK_RIGHT then
-Jugador.MoverDerecha;
+  if Key = Ord('D') then
+    Jugador.MoverDerecha;
 
-if key = VK_Left then
-Jugador.MoverIzquierda;
+  if Key = Ord('A') then
+    Jugador.MoverIzquierda;
 
-if key = VK_UP then
-Jugador.MoverArriba;
+  if Key = Ord('W') then
+    Jugador.MoverArriba;
 
-if key = VK_DOWN then
-Jugador.MoverAbajo
+  if Key = Ord('S') then
+    Jugador.MoverAbajo;
 
+  Repaint;
 end;
+
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
@@ -59,6 +62,20 @@ ShowMessage('Posicion X: ' + IntToStr(Jugador.GetPosicionX));
 
 end;
 
+
+
+procedure TForm1.FormPaint(Sender: TObject);
+var
+  X1, Y1, X2, Y2: Integer;
+begin
+  X1 := Jugador.GetPosicionX;
+  Y1 := Jugador.GetPosicionY;
+
+  X2 := X1 + 50;
+  Y2 := Y1 + 50;
+
+  Canvas.Rectangle(X1, Y1, X2, Y2);
+end;
 
 procedure TForm1.Button2Click(Sender: TObject);
 begin

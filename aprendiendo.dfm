@@ -1,16 +1,19 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  ClientHeight = 433
-  ClientWidth = 622
+  ClientHeight = 600
+  ClientWidth = 806
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  KeyPreview = True
+  Position = poDesigned
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
+  OnPaint = FormPaint
   TextHeight = 15
   object Button1: TButton
     Left = 200
