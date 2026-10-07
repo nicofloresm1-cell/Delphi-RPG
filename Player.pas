@@ -3,6 +3,7 @@ unit Player;
 interface
 uses System.Math;
 type
+  TDireccion = (Arriba, Abajo, Izquierda, Derecha);
   TPlayer = class
   private
 
@@ -10,6 +11,8 @@ vidaMaxima : Integer;
 vida: Integer;
 PosicionX: Integer;
 PosicionY: Integer;
+Direccion: TDireccion;
+Animacion: Integer;
 
 public
 constructor Create;
@@ -27,6 +30,9 @@ procedure MoverDerecha;
 
 function GetPosicionX: Integer;
 function GetPosicionY: Integer;
+
+function GetDireccion: TDireccion;
+function GetAnimacion: Integer;
 
 
 
@@ -54,6 +60,17 @@ begin
   Result := PosicionY;
 end;
 
+
+function TPlayer.GetDireccion: TDireccion;
+begin
+  Result := Direccion;
+end;
+
+function TPlayer.GetAnimacion: Integer;
+begin
+  Result := Animacion;
+end;
+
 {vida y daño}
 
 procedure TPlayer.RecibirDanio(Danio: Integer);
@@ -74,6 +91,8 @@ begin
   Vida := 100;
   PosicionX := 100;
   PosicionY := 100;
+  Direccion := Abajo;
+  Animacion := 0;
 end;
 
 
@@ -82,27 +101,40 @@ end;
 procedure TPlayer.MoverDerecha;
 begin
   if PosicionX + 5 <= 700 then
+  begin
     PosicionX := PosicionX + 5;
+    Direccion := Derecha;
+  Animacion := 1 - Animacion;
+  end;
 end;
-
 procedure TPlayer.MoverIzquierda;
 begin
-
-if PosicionX - 5 >= 0 then
-  PosicionX := PosicionX - 5;
-
+  if PosicionX - 5 >= 0 then
+  begin
+    PosicionX := PosicionX - 5;
+    Direccion := Izquierda;
+    Animacion := 1 - Animacion;
+  end;
 end;
 
 procedure TPlayer.MoverArriba;
 begin
   if PosicionY - 5 >= 0 then
+  begin
     PosicionY := PosicionY - 5;
+    Direccion := Arriba;
+    Animacion := 1 - Animacion;
+  end;
 end;
 
 procedure TPlayer.MoverAbajo;
 begin
   if PosicionY + 5 <= 700 then
+  begin
     PosicionY := PosicionY + 5;
+    Direccion := Abajo;
+    Animacion := 1 - Animacion;
+  end;
 end;
 
 end.
